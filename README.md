@@ -19,4 +19,20 @@
       直接使用json
 
  ## 3.vue 项目使用proxytable   
-   -- 参考天赐
+  --- 解决方法
+
+    proxyTable: {
+      '/apis': {
+        // 测试环境
+        target: 'http://www.thenewstep.cn/',  // 接口域名
+        changeOrigin: true,  //是否跨域
+        pathRewrite: {
+            '^/apis': ''   //需要rewrite重写的,
+        }              
+      }
+
+      
+## 4.git 初始化仓库 本地和远程
+ ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/gitlab.png)
+
+
