@@ -35,4 +35,22 @@
 ## 4.git 初始化仓库 本地和远程
  ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/gitlab.png)
 
+## 5.ruduce的高级用法
+  ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/reduce.png)
+
+  https://segmentfault.com/a/1190000005921341 讲解reduce的精华帖
+
+
+
+
+    reduce 支持两个参数 1 callback 2 initalValue
+    -- 1 没有initalValue 
+      那么callback 里的prev curr index arr 中prev 就是数组中的第一个，curr是第二个 index为1
+    -- 2 有initalValue
+    	那么callback 中的prev 为initalValue curr 为 数组第一项
+
+      Note: 空数组没有initalValue 将会是一个error
+      
+
+
 

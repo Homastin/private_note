@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const programmerOutput = [
+      {
+        name: 'Uncle Bobby',
+        linesOfCode: 500
+      }, {
+        name: 'Suzie Q',
+        linesOfCode: 1500
+      }, {
+        name: 'Jimmy Gosling',
+        linesOfCode: 150
+      }, {
+        name: 'Gracie Hopper',
+        linesOfCode: 1000
+      }
+    ];
+    let totalOutput = programmerOutput
+      .map(output => output.linesOfCode)
+      .reduce((totalLines, lines) => totalLines + lines, 0)
+
+    var total = [0, 1, 2, 3].reduce((acc, cur) => {
+      return acc + cur
+    }, 0);
+    console.log(total)   // 6
+  </script>
+</body>
+
+</html>
