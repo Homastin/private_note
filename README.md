@@ -50,6 +50,48 @@
     	那么callback 中的prev 为initalValue curr 为 数组第一项
 
       Note: 空数组没有initalValue 将会是一个error
+
+## 6.代码的简洁之道
+
+  通过 flag 的 true 或 false，来判断执行逻辑，违反了一个函数干一件事的原则。
+
+  Bad:
+
+    function createFile(name, temp) {
+      if (temp) {
+        fs.create(`./temp/${name}`);
+      } else {
+        fs.create(name);
+      }
+    }
+    
+  Good
+
+    function createFile(name) {
+      fs.create(name);
+    }
+    function createFileTemplate(name) {
+      createFile(`./temp/${name}`)
+    }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
 
 
