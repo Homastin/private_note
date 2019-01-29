@@ -74,8 +74,100 @@
       createFile(`./temp/${name}`)
     }   
 
+## 7. this指向问题
+  1、函数执行时首先看函数名前面是否有"."，有的话，"."前面是谁,this就是谁；没有的话this就是window
+
+      function fn(){
+        console.log(this);
+      }
+      var obj={fn:fn};
+      fn();//this->window
+      obj.fn();//this->obj
+      function sum(){
+          fn();//this->window
+      }
+      sum();
+      var oo={
+      sum:function(){
+      console.log(this);//this->oo
+            fn()；//this->window
+        }
+      };
+      oo.sum();
 
 
+  必须要注意一点：类中某一个属性值(方法)，方法中的this需要看方法执行的时候，前面是否有".",才能知道this是谁。
+
+    function Fn(){
+      this.x=100；//this->f1
+      this.getX=function(){
+      console.log(this.x);//this->需要看getX执行的时候才知道
+        }
+    }
+    var f1=new Fn;
+    f1.getX();//->方法中的this是f1，所以f1.x=100
+    var ss=f1.getX;
+    ss();//->方法中的this是window ->undefined
+## 8.apply，call， bind 用法区别
+    我们先来看一个问题，想在下面的例子中this绑定obj,怎么实现？
+
+      var obj={name:"浪里行舟"};
+      function fn(){
+        console.log(this);//this=>window
+      }
+      fn();
+      obj.fn();//->Uncaught TypeError:obj.fn is not a function
+
+  #### 如果直接绑定obj.fn(),程序就会报错。这里我们应该用fn.call(obj)就可以实现this绑定obj,接下来我们详细介绍下call方法：
+
+  #### call方法的作用:
+  #### ①首先我们让原型上的call方法执行，在执行call方法的时候，我们让fn方法中的this变为第一个参数obj；然后再把fn这个函数执行。
+
+  #### ②call还可以传值，在严格模式下和非严格模式下，得到值不一样。
+
+    //在非严格模式下
+    var obj={name:"浪里行舟 "};
+    function fn(num1,num2){
+      console.log(num1+num2);
+      console.log(this);
+    }
+    fn.call(100,200);//this->100 num1=200 num2=undefined
+    fn.call(obj,100,200);//this->obj num1=100 num2=200
+    fn.call();//this->window
+    fn.call(null);//this->window
+    fn.call(undefined);//this->window
+
+##
+
+      //严格模式下 
+      fn.call();//在严格模式下this->undefined
+      fn.call(null);// 在严格模式 下this->null
+      fn.call(undefined);//在严格模式下this->undefined
+#### bind体现了预处理思想：事先把fn的this改变为我们想要的结果，并且把对应的参数值也准备好，以后要用到了，直接的执行即可
+
+#### call和apply直接执行函数，而bind需要再一次调用。
+
+    var a ={
+          name : "Cherry",
+          fn : function (a,b) {
+              console.log( a + b)
+          }
+      }
+    var b = a.fn;
+    b.bind(a,1,2)
+    // 如需执行函数 需要手动调用
+    b.bind(a,1,2)()
+
+## 9.箭头函数的this指向
+现在，箭头函数完全修复了this的指向，**箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候处在的对象就是它的this。**
+
+换句话说，**箭头函数的this看外层的是否有函数，如果有，外层函数的this就是内部箭头函数的this，如果没有，则this是window。**
+
+# 参考文章 
+
+++[你还没搞懂this?](https://segmentfault.com/a/1190000016680885)++
+
+++[this、apply、call、bind++](https://juejin.im/post/59bfe84351882531b730bac2)++
 
 
 
