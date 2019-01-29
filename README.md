@@ -165,9 +165,9 @@
 
 # 参考文章 
 
-++[你还没搞懂this?](https://segmentfault.com/a/1190000016680885)++
+[你还没搞懂this?](https://segmentfault.com/a/1190000016680885)
 
-++[this、apply、call、bind++](https://juejin.im/post/59bfe84351882531b730bac2)++
+[this、apply、call、bind++](https://juejin.im/post/59bfe84351882531b730bac2)
 
 
 
