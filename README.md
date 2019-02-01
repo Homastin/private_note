@@ -163,12 +163,38 @@
 
 换句话说，**箭头函数的this看外层的是否有函数，如果有，外层函数的this就是内部箭头函数的this，如果没有，则this是window。**
 
-# 参考文章 
+### 参考文章 
 
 [你还没搞懂this?](https://segmentfault.com/a/1190000016680885)
 
 [this、apply、call、bind++](https://juejin.im/post/59bfe84351882531b730bac2)
 
+## 10.js在一个数组里随机选出不重复xx项?
+
+	var result = [];
+	var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+	
+	var count = arr.length;
+	for (var i = 0; i < 10; i++) {
+	    var index = ~~(Math.random() * count) + i;
+	    result[i] = arr[index];
+	    arr[index] = arr[i];
+	    count--;
+	}
+	
+	console.log(result);
+	
+#
+	算法简述：
+	
+	把源数组分成左右两段，左边按顺序递增，保存已选择的随机数；右侧是剩余可选的数值；
+    从右侧选一个，与左	侧最后一个位置的数值交换就可以达到目的。
+	
+	然后考虑把左侧用一个新数组表示，右侧选中的数移入新数组，再将左侧应该交换过来的值移过来……
+	
+![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/4175043505-57cd8230d552b.png)
+	
+	
 
 
 
