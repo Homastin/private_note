@@ -33,8 +33,39 @@
 
       
 ## 4.git 初始化仓库 本地和远程
- ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/gitlab.png)
+  **Command line instructions**
 
+  Git global setup
+  ```
+    git config --global user.name "xxx"
+    git config --global user.email "xx@xx.com"
+  ```
+  Create a new repository
+  ```
+    git clone git@182.254.xxx.xxx:user/test.git 
+    cd test
+    touch README. md
+    git add README . md
+    git commit 一m "add README"
+    git push 一u origin master
+  ```
+  Existing folder
+  ```
+    cd existing_ folder
+    git init
+    git remote add origin git@182.254.xx.xx:user/test.git
+    git add
+    git commit 一m "Initial commit"
+    git push 一u origin master
+  ```
+  Existing Git repository
+  ```
+    cd existing_ repo
+    git remote rename origin old一origin 
+    git remote add origin git@182.254.xx.xx:user/test.git
+    git push 一u origin 一all
+    git push 一u origin 一tags 
+  ```
 ## 5.ruduce的高级用法
   ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/reduce.png)
 
@@ -194,6 +225,31 @@
 	
 ![avatar](https://bmsoft.oss-cn-shanghai.aliyuncs.com/images/4175043505-57cd8230d552b.png)
 	
+## 11.利用 a 标签解析 URL
+  ##### 创建一个 a 标签将需要解析的 URL 赋值给 a 的 href 属性，然后我们就能很方便的拿到这些内容。代码如下：
+         
+    
+    function parseURL(url) {
+        var a =  document.createElement('a');
+        a.href = url;
+        return {
+            host: a.hostname,
+            port: a.port,
+            query: a.search,
+            params: (function(){
+                var ret = {},
+                    seg = a.search.replace(/^\?/,'').split('&'),
+                    len = seg.length, i = 0, s;
+                for (;i<len;i++) {
+                    if (!seg[i]) { continue; }
+                    s = seg[i].split('=');
+                    ret[s[0]] = s[1];
+                }
+                return ret;
+            })(),
+            hash: a.hash.replace('#','')
+        };
+    }
 	
 
 
